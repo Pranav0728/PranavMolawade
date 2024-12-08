@@ -1,46 +1,105 @@
 "use client";
-import React from "react";
-import { IconHome, IconMessage, IconUser } from "@tabler/icons-react";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+import { MenuIcon, X } from "lucide-react";
+import Image from "next/image";
 
-export function Navbar() {
-  const navItems = [
-    {
-      name: "Home",
-      link: "/",
-      icon: <IconHome className="h-6 w-6 " />,
-    },
-    {
-      name: "About",
-      link: "/about",
-      icon: <IconUser className="h-6 w-6 " />,
-    },
-    {
-      name: "Contact",
-      link: "/contact",
-      icon: <IconMessage className="h-6 w-6 " />,
-    },
+export default function Navbar({ className }) {
+  const pathname = usePathname();
+
+  const items = [
+    { href: "/", title: "Home" },
+    { href: "/post", title: "Posts" },
+    { href: "/feedback", title: "Feedback" },
   ];
 
-  return (
-    <div className="sticky top-4 left-1/2 bg-black mt-5 mx-16 shadow-xl rounded-xl h- px-6 py-2 flex items-center justify-between space-x-8">
-      <div>
-        <h1 className="text-white">Pranav Molawade</h1>
-      </div>
-      <div className="flex">
-        {navItems.map((item, index) => (
+  const getLogo = () => (
+    <Link href="/" className="pointer flex items-center">
+      <Image
+        alt="logo"
+        src="/default-logo.png"
+        className="m-3"
+        width={50}
+        height={50}
+        priority
+      />
+      {/* <h1 className="text-lg font-bold">Pranav Molawade</h1> */}
+    </Link>
+  );
+
+  const getAuthButtons = () => (
+    <div className="flex gap-3 items-center mx-2">
+      <Link href="/chat" className="btn-primary">
+        Let's Chat
+      </Link>
+    </div>
+  );
+
+  const getHeaderItems = () => (
+    <>
+      {items.map((item) => {
+        const isSelected = pathname === item.href || pathname.includes(item.href);
+
+        return (
           <Link
-            key={index}
-            href={item.link}
-            className="flex items-center text-sm font-medium text-white p-2"
+            href={item.href}
+            key={item.title}
+            passHref
+            className={cn(isSelected ? "text-xl font-bold" : "text-lg")}
           >
-            {item.icon}
-            <span className="mt-1 p-2">{item.name}</span>
+            <span className="cursor-pointer">{item.title}</span>
           </Link>
-        ))}
-      </div>
-      <div>
-        <h1 className="text-white">let's Chat</h1>
+        );
+      })}
+    </>
+  );
+
+  return (
+    <div
+      className={cn(
+        "flex md:h-15 h-20 items-center justify-between mt-5 text-white w-[90%] bg-black rounded-sm",
+        className
+      )}
+    >
+      <div className="w-full max-w-[1000px] md:px-8 px-4">
+        <div className="flex items-center justify-between gap-x-8 w-full">
+          <div className="md:flex-0 min-w-fit flex-1">{getLogo()}</div>
+          <div className="hidden md:flex items-center w-full justify-between">
+            <div className="flex items-center gap-x-8 flex-1">{getHeaderItems()}</div>
+            {getAuthButtons()}
+          </div>
+          <div className="md:hidden flex gap-x-4 items-center">
+            {getAuthButtons()}
+            <Drawer direction="right">
+              <DrawerTrigger asChild>
+                <button>
+                  <MenuIcon />
+                </button>
+              </DrawerTrigger>
+              <DrawerContent className="h-screen top-0 right-0 left-auto mt-0 w-64 rounded-none text-black">
+                <div className="mx-auto w-full p-5">
+                  <DrawerHeader>
+                    <DrawerClose asChild>
+                      <button className="w-full flex items-end justify-end">
+                        <X />
+                      </button>
+                    </DrawerClose>
+                    <h2 className="sr-only">Navigation Menu</h2>
+                  </DrawerHeader>
+                  <div className="p-4 pb-0 space-y-4">{getHeaderItems()}</div>
+                </div>
+              </DrawerContent>
+            </Drawer>
+          </div>
+        </div>
       </div>
     </div>
   );
