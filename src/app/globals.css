@@ -65,3 +65,26 @@
   }
 }
 
+.timeline-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.timeline-content {
+  display: flex;
+  flex-direction: column;
+  animation: scroll 5s linear infinite;
+}
+
+.timeline-container:hover .timeline-content {
+  animation-play-state: paused;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%); /* Adjust based on the duplicated content height */
+  }
+}

@@ -26,10 +26,10 @@ export default function Page() {
       />
 
       {/* Foreground Content */}
-      <div className="relative z-10 flex w-full  h-full items-center md:mx-15 flex-col">
+      <div className="relative z-10 flex w-full  h-full items-center md:mx-15 flex-col ">
         <Navbar />
-        <div className="md:flex-row flex-col flex items-center  w-[90%] gap-x-5 gap-y-5 mt-5">
-          <div className="flex-1">
+        <div className="md:flex-row flex-col flex items-center md:h-3/4 w-[90%] gap-x-5 gap-y-5 mt-5">
+          <div className="flex-1 h-full">
             <Profile />
           </div>
           <div className="flex flex-col flex-1 gap-y-5 h-full w-full">
@@ -40,7 +40,10 @@ export default function Page() {
             <Mysaasproduct />
           </div>
         </div>
+        <div className="flex-3 h-full w-[90%] my-5">
+            <Mysaasproduct />
+          </div>
       </div>
     </div>
-  );
+  );  
 }

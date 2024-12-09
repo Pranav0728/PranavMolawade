@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 function Profile() {
   return (
-    <div className=' bg-black p-6 rounded-xl pb-20'>
+    <div className=' bg-black p-6 rounded-xl pb-20 h-full'>
       <Image alt="profile"
         src="/Assets/Avatar.png"
         width={1000}
