@@ -1,4 +1,5 @@
 "use client";
+import Latestytvideos from "@/components/Latestytvideos";
 import Myfavtool from "@/components/Myfavtool";
 import Mysaasproduct from "@/components/Mysaasproduct";
 import Navbar from "@/components/Navbar";
@@ -41,7 +42,7 @@ export default function Page() {
           </div>
         </div>
         <div className="flex-3 h-full w-[90%] my-5">
-            <Mysaasproduct />
+            <Latestytvideos/>
           </div>
       </div>
     </div>

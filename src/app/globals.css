@@ -73,7 +73,7 @@
 .timeline-content {
   display: flex;
   flex-direction: column;
-  animation: scroll 5s linear infinite;
+  animation: scroll 10s linear infinite;
 }
 
 .timeline-container:hover .timeline-content {
