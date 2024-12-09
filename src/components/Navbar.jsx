@@ -8,6 +8,8 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerTrigger,
+  DrawerTitle,
+  DrawerDescription
 } from "@/components/ui/drawer";
 import { MenuIcon, X } from "lucide-react";
 import Image from "next/image";
@@ -25,13 +27,13 @@ export default function Navbar({ className }) {
     <Link href="/" className="pointer flex items-center">
       <Image
         alt="logo"
-        src="/default-logo.png"
+        src="/Assets/logo.png"
         className="m-3"
-        width={50}
-        height={50}
+        width={40}
+        height={40}
         priority
       />
-      {/* <h1 className="text-lg font-bold">Pranav Molawade</h1> */}
+      <h1 className="text-lg font-bold">Pranav Molawade</h1>
     </Link>
   );
 
@@ -65,17 +67,16 @@ export default function Navbar({ className }) {
   return (
     <div
       className={cn(
-        "flex md:h-15 h-20 items-center justify-between mt-5 text-white w-[90%] bg-black rounded-sm",
+        "flex md:h-15 h-20 items-center justify-between mt-5 text-white w-[90%] bg-black rounded-xl navbar",
         className
       )}
     >
-      <div className="w-full max-w-[1000px] md:px-8 px-4">
+      <div className="w-full md:px-8 px-4">
         <div className="flex items-center justify-between gap-x-8 w-full">
-          <div className="md:flex-0 min-w-fit flex-1">{getLogo()}</div>
-          <div className="hidden md:flex items-center w-full justify-between">
-            <div className="flex items-center gap-x-8 flex-1">{getHeaderItems()}</div>
-            {getAuthButtons()}
-          </div>
+          <div className="flex items-center ">{getLogo()}</div>
+            <div className="md:flex items-center gap-x-8 hidden">{getHeaderItems()}</div>
+            <div className="md:flex items-center hidden">{getAuthButtons()}</div>
+            
           <div className="md:hidden flex gap-x-4 items-center">
             {getAuthButtons()}
             <Drawer direction="right">
@@ -85,6 +86,8 @@ export default function Navbar({ className }) {
                 </button>
               </DrawerTrigger>
               <DrawerContent className="h-screen top-0 right-0 left-auto mt-0 w-64 rounded-none text-black">
+                <DrawerDescription/>
+              <DrawerTitle />
                 <div className="mx-auto w-full p-5">
                   <DrawerHeader>
                     <DrawerClose asChild>
@@ -94,7 +97,7 @@ export default function Navbar({ className }) {
                     </DrawerClose>
                     <h2 className="sr-only">Navigation Menu</h2>
                   </DrawerHeader>
-                  <div className="p-4 pb-0 space-y-4">{getHeaderItems()}</div>
+                  <div className="p-4 pb-0 space-y-4 flex flex-col">{getHeaderItems()}</div>
                 </div>
               </DrawerContent>
             </Drawer>
