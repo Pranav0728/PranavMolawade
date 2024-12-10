@@ -30,10 +30,10 @@ export default function Navbar({ className }) {
     <Link href="/" className="pointer flex items-center">
       <Image
         alt="logo"
-        src="/Assets/logo.png"
-        className="m-3"
-        width={40}
-        height={40}
+        src="/Assets/logoP.jpg"
+        className="m-3 rounded-full border"
+        width={30}
+        height={30}
         priority
       />
       <h1 className="text-lg font-bold">Pranav Molawade</h1>
@@ -74,11 +74,11 @@ export default function Navbar({ className }) {
   return (
     <div
       className={cn(
-        "flex md:h-15 h-20 items-center justify-between mt-5 text-white w-[90%] bg-black rounded-xl navbar",
+        "flex md:h-16 h-20 items-center justify-between mt-5 text-white w-[90%] bg-black rounded-xl navbar p-2",
         className
       )}
     >
-      <div className="w-full md:px-8 px-4">
+      <div className="w-full md:px-4 px-4">
         <div className="flex items-center justify-between gap-x-8 w-full">
           <div className="flex items-center">{getLogo()}</div>
           <div className="md:flex items-center gap-x-8 hidden">

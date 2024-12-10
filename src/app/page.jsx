@@ -9,10 +9,11 @@ import { motion } from "framer-motion";
 
 export default function Page() {
   return (
-    <div className="relative md:h-[120vh] h-[250vh] overflow-hidden">
+    <div className="relative md:h-[130vh]  h-[280vh] overflow-hidden">
       <motion.div
         className="absolute inset-0"
         style={{
+          opacity: 0.4 ,
           background: "linear-gradient(90deg, #6B21A8, #16A34A)",
           backgroundSize: "200% 200%",
         }}
