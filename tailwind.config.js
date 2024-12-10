@@ -9,6 +9,7 @@ module.exports = {
   theme: {
   	extend: {
   		colors: {
+			customBlack: 'rgb(14, 17, 25)',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
@@ -57,5 +58,5 @@ module.exports = {
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate","tailwind-scrollbar-hide")],
 };

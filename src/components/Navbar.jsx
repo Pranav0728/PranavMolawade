@@ -9,18 +9,21 @@ import {
   DrawerHeader,
   DrawerTrigger,
   DrawerTitle,
-  DrawerDescription
+  DrawerDescription,
 } from "@/components/ui/drawer";
 import { MenuIcon, X } from "lucide-react";
 import Image from "next/image";
+import { IoNavigate } from "react-icons/io5";
+import { RiHomeSmileLine } from "react-icons/ri";
+import { AiOutlineFileText, AiOutlineComment } from "react-icons/ai";
 
 export default function Navbar({ className }) {
   const pathname = usePathname();
 
   const items = [
-    { href: "/", title: "Home" },
-    { href: "/post", title: "Posts" },
-    { href: "/feedback", title: "Feedback" },
+    { href: "/", title: "Home", icon: <RiHomeSmileLine size={20} /> },
+    { href: "/post", title: "Posts", icon: <AiOutlineFileText size={20} /> },
+    { href: "/feedback", title: "Feedback", icon: <AiOutlineComment size={20} /> },
   ];
 
   const getLogo = () => (
@@ -37,26 +40,30 @@ export default function Navbar({ className }) {
     </Link>
   );
 
-  const getAuthButtons = () => (
+  const getChatButton = () => (
     <div className="flex gap-3 items-center mx-2">
-      <Link href="/chat" className="btn-primary">
-        Let's Chat
-      </Link>
+      <button
+        className="w-full py-3 px-4 bg-customBlack hover:bg-blue-600 flex flex-row justify-center items-center gap-2 text-white font-bold rounded-md text-center"
+      >
+        Let's chat <IoNavigate size={25} />
+      </button>
     </div>
   );
 
   const getHeaderItems = () => (
     <>
       {items.map((item) => {
-        const isSelected = pathname === item.href || pathname.includes(item.href);
+        const isSelected =
+          pathname === item.href || pathname.includes(item.href);
 
         return (
           <Link
             href={item.href}
             key={item.title}
             passHref
-            className={cn(isSelected ? "text-xl font-bold" : "text-lg")}
+            className={cn(isSelected ? "font-bold bg-customBlack " : "flex items-center gap-2", "px-2 py-1 flex gap-2 items-center rounded-md")}
           >
+            {item.icon}
             <span className="cursor-pointer">{item.title}</span>
           </Link>
         );
@@ -73,22 +80,23 @@ export default function Navbar({ className }) {
     >
       <div className="w-full md:px-8 px-4">
         <div className="flex items-center justify-between gap-x-8 w-full">
-          <div className="flex items-center ">{getLogo()}</div>
-            <div className="md:flex items-center gap-x-8 hidden">{getHeaderItems()}</div>
-            <div className="md:flex items-center hidden">{getAuthButtons()}</div>
-            
+          <div className="flex items-center">{getLogo()}</div>
+          <div className="md:flex items-center gap-x-8 hidden">
+            {getHeaderItems()}
+          </div>
+          <div className="md:flex items-center hidden">{getChatButton()}</div>
+
           <div className="md:hidden flex gap-x-4 items-center">
-            {getAuthButtons()}
             <Drawer direction="right">
               <DrawerTrigger asChild>
                 <button>
                   <MenuIcon />
                 </button>
               </DrawerTrigger>
-              <DrawerContent className="h-screen top-0 right-0 left-auto mt-0 w-64 rounded-none text-black">
-                <DrawerDescription/>
-              <DrawerTitle />
-                <div className="mx-auto w-full p-5">
+              <DrawerContent className="h-screen top-0 right-0 left-auto mt-0 w-64 rounded-none text-white bg-black">
+                <DrawerDescription />
+                <DrawerTitle />
+                <div className="mx-auto w-full p-5 h-full flex flex-col">
                   <DrawerHeader>
                     <DrawerClose asChild>
                       <button className="w-full flex items-end justify-end">
@@ -97,7 +105,15 @@ export default function Navbar({ className }) {
                     </DrawerClose>
                     <h2 className="sr-only">Navigation Menu</h2>
                   </DrawerHeader>
-                  <div className="p-4 pb-0 space-y-4 flex flex-col">{getHeaderItems()}</div>
+                  <div className="flex-grow">
+                    <div className="p-4 pb-0 space-y-4 flex flex-col">
+                      {getHeaderItems()}
+                    </div>
+                    <div className="pb-0 space-y-4 flex flex-col">
+                      {/* Add other content here if needed */}
+                    </div>
+                  </div>
+                  <div className="mt-auto">{getChatButton()}</div>
                 </div>
               </DrawerContent>
             </Drawer>

@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 
 export default function Page() {
   return (
-    <div className="relative h-[150vh] overflow-hidden">
+    <div className="relative md:h-[120vh] h-[250vh] overflow-hidden">
       <motion.div
         className="absolute inset-0"
         style={{
@@ -27,6 +27,7 @@ export default function Page() {
       />
 
       {/* Foreground Content */}
+     
       <div className="relative z-10 flex w-full  h-full items-center md:mx-15 flex-col ">
         <Navbar />
         <div className="md:flex-row flex-col flex items-center md:h-3/4 w-[90%] gap-x-5 gap-y-5 mt-5">

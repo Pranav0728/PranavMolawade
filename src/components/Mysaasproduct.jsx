@@ -15,7 +15,7 @@ function Mysaasproduct() {
       <h1 className="text-2xl font-bold mb-4">My SaaS Product</h1>
 
       <div className="flex flex-col justify-center gap-5">
-        {saasProjects.map((project) => (
+      {saasProjects.slice(0, 2).map((project) => (
           <div key={project.id} className="relative w-full h-[250px]"> {/* Container with desired height */}
             <Image
               src={project.imgUrl}
